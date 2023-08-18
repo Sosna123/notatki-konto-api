@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 const dbURI = 'mongodb+srv://olekarez:test123@notatki-konto.tvmbsxd.mongodb.net/?retryWrites=true&w=majority'
 
 // schemas
-const Note = require('./models.js')
+const { Note, User } = require('./models.js')
 
 // morgan
 const morgan = require('morgan')

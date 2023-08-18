@@ -11,6 +11,20 @@ const NoteSchema = new mongoose.Schema({
     },
 })
 
-const Note = mongoose.model('Note', NoteSchema)
+const UserSchema = new mongoose.Schema({
+    username:{
+        type: String,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
+    }
+})
 
-module.exports = Note;
+const Note = mongoose.model('Note', NoteSchema)
+const User = mongoose.model('User', UserSchema)
+
+module.exports = {
+    Note, User
+};
