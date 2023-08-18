@@ -60,7 +60,12 @@ app.post('/', (req, res) => {
 
 app.delete('/:id', (req, res) => {
     const { id } = req.params;
-    Note.findByIdAndDelete(id).then(() => {
-        res.redirect('/')
+    try{
+        Note.findByIdAndDelete(id).then(() => {
+        res.status(200)
     })
+    } catch(err){
+        console.log(`there is no note with id: ${id}`)
+    }
+    
 })
