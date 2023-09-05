@@ -65,9 +65,7 @@ app.put("/:id", async (req, res) => {
     const { id } = req.params;
     const body = req.body;
 
-    console.log(body)
     const result = await Note.findByIdAndUpdate(id, {content: body.content, isComplete: body.isComplete})
-    console.log(result)
 })
 
 app.delete('/:id', (req, res) => {
