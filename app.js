@@ -41,14 +41,11 @@ app.use(cors(corsOptions));
 
 // wysyłanie danych
 
+    // home
 app.get("/", (req, res) => {
     Note.find().then((data) => res.json(data));
 });
 
-app.get("/:id", (req, res) => {
-    const { id } = req.params;
-    Note.findById(id).then((data) => res.json(data));
-});
 
 app.post('/', (req, res) => {
     console.log(req.body)
@@ -58,12 +55,27 @@ app.post('/', (req, res) => {
     })
 })
 
+    // id pages
+app.get("/:id", (req, res) => {
+    const { id } = req.params;
+    Note.findById(id).then((data) => res.json(data));
+});
+
+app.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const body = req.body;
+
+    console.log(body)
+    const result = await Note.findByIdAndUpdate(id, {content: body.content, isComplete: body.isComplete})
+    console.log(result)
+})
+
 app.delete('/:id', (req, res) => {
     const { id } = req.params;
     try{
         Note.findByIdAndDelete(id).then(() => {
-        res.status(200)
-    })
+            res.status(200)
+        })
     } catch(err){
         console.log(`there is no note with id: ${id}`)
     }

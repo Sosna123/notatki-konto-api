@@ -4,6 +4,10 @@ const NoteSchema = new mongoose.Schema({
     content:{
         type: String,
         required: true
+    },
+    isComplete:{
+        type: Boolean,
+        required: false
     }
 })
 
