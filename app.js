@@ -19,7 +19,7 @@ const morgan = require('morgan')
 // cors
 const cors = require('cors')
 const corsOptions = {
-    origin: ['http://localhost:8080', 'http://localhost:3000', 'https://notatki-konto-production.up.railway.app/']
+    origin: '*'
 }
 
 // app
