@@ -57,6 +57,10 @@ app.post('/', (req, res) => {
 
     // id pages
 app.get("/:id", (req, res) => {
+    if (req.params._id === "favicon.ico") {
+        return res.status(404)
+    }
+
     const { id } = req.params;
     Note.findById(id).then((data) => res.json(data));
 });
