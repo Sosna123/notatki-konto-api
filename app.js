@@ -41,6 +41,9 @@ app.use(cors(corsOptions));
 
 // wysyłanie danych
 
+    // favicon.ico fix
+app.get('/favicon.ico', (req, res) => res.send(''));
+
     // home
 app.get("/", (req, res) => {
     Note.find().then((data) => res.json(data));
@@ -57,19 +60,11 @@ app.post('/', (req, res) => {
 
     // id pages
 app.get("/:id", (req, res) => {
-    if (req.params._id === "favicon.ico") {
-        return res.status(404)
-    }
-
     const { id } = req.params;
     Note.findById(id).then((data) => res.json(data));
 });
 
 app.put("/:id", async (req, res) => {
-    if (req.params._id === "favicon.ico") {
-        return res.status(404)
-    }
-
     const { id } = req.params;
     const body = req.body;
 
@@ -77,10 +72,6 @@ app.put("/:id", async (req, res) => {
 })
 
 app.delete('/:id', (req, res) => {
-    if (req.params._id === "favicon.ico") {
-        return res.status(404)
-    }
-
     const { id } = req.params;
     try{
         Note.findByIdAndDelete(id).then(() => {
