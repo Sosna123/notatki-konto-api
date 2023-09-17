@@ -66,6 +66,10 @@ app.get("/:id", (req, res) => {
 });
 
 app.put("/:id", async (req, res) => {
+    if (req.params._id === "favicon.ico") {
+        return res.status(404)
+    }
+
     const { id } = req.params;
     const body = req.body;
 
@@ -73,6 +77,10 @@ app.put("/:id", async (req, res) => {
 })
 
 app.delete('/:id', (req, res) => {
+    if (req.params._id === "favicon.ico") {
+        return res.status(404)
+    }
+
     const { id } = req.params;
     try{
         Note.findByIdAndDelete(id).then(() => {
